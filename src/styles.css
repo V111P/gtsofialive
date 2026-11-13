@@ -532,7 +532,10 @@ body.dark-theme {
 .line-picker-all { min-height: 34px; padding-left: 10px; font-size: 12px; font-weight: 700; }
 .dark-theme .line-picker-menu { box-shadow: 0 12px 32px rgba(0,0,0,.38); }
 @media (max-width: 760px) {
-  .line-picker-menu { max-height: min(52vh, 360px); }
+  .line-picker-menu {
+    max-height: min(58dvh, 420px, calc(100dvh - 240px));
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Keep location control opposite the zoom controls, in the upper-left corner. */
@@ -1140,8 +1143,8 @@ body.dark-theme .vehicles-section { border-color: rgba(55, 65, 81, .95); backgro
   }
 }
 
-/* v7: unified mobile sidebar card for filters + live vehicles, with an
-   elevated line picker so its option menu never sits behind the vehicle list. */
+/* v8: keep the unified mobile sidebar, but let the line menu extend beyond
+   the panel. The vehicle inventory has its own scroll area. */
 @media (max-width: 760px) {
   .workspace:not(.sidebar-collapsed) > .sidebar {
     display: flex;
@@ -1151,9 +1154,9 @@ body.dark-theme .vehicles-section { border-color: rgba(55, 65, 81, .95); backgro
     background: rgba(255, 255, 255, .97);
     box-shadow: 0 8px 28px rgba(15, 23, 42, .16);
     backdrop-filter: blur(14px);
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior: contain;
+    /* A scrolling/overflow-clipping sidebar cuts off the absolutely positioned
+       line menu. Keep the panel bounded by max-height, but allow the menu out. */
+    overflow: visible;
   }
   .workspace:not(.sidebar-collapsed) > .sidebar .filter-section {
     position: relative;
@@ -1171,6 +1174,10 @@ body.dark-theme .vehicles-section { border-color: rgba(55, 65, 81, .95); backgro
   }
   .workspace:not(.sidebar-collapsed) > .sidebar .line-picker-menu {
     z-index: 20;
+    max-height: min(58dvh, 420px, calc(100dvh - 240px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   .workspace:not(.sidebar-collapsed) > .sidebar .vehicles-section {
     position: relative;
