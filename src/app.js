@@ -8,7 +8,7 @@
   const STALE_AFTER_SECONDS = STALE_AFTER / 1000;
   const RECONNECT_DELAY = CONFIG.reconnectDelayMs || 2500;
   const MIN_ACTIVE_SPEED = Number(CONFIG.minActiveSpeed) || 3;
-  const TYPE_NAMES = { bus: 'Автобус', tram: 'Трамвай', trolley: 'Тролейбус', other: 'Транспорт' };
+  const TYPE_NAMES = { bus: 'Автобус', tram: 'Трамвай', trolley: 'Тролей', other: 'Транспорт' };
   const TYPE_COLORS = { bus: '#BE1E2D', tram: '#F7941D', trolley: '#27AAE1', other: '#111827' };
   const METRO_LINE_COLORS = { M1: '#EB2227', M2: '#1C75BC', M3: '#39B54A', M4: '#FFDE17' };
 
